@@ -19,14 +19,17 @@ let phonename=document.querySelector('#phonename')
 let phoneprice=document.querySelector('#phoneprice')
 
 let showProducts = () => {
-  products.forEach((el) => {
+  products.forEach((el,index) => {
     productsDiv.innerHTML += `
         <div class="col-12 p-3 bg-white shadow rounded border">
-          <h1>${el.name}</h1>
-          <div class="d-flex align-items-center justify-content-between">
-            <p class="mb-0">Price : ${el.price} $</p>
-            <button class="btn btn-success" onclick="addToCart(${el.id})">Add To Cart</button>
-          </div>
+        <div class="d-flex justify-content-between">
+        <h1>${el.name}</h1>
+        <button class="col-1 btn btn-danger align-self-end mb-3" onclick="deletephonelist(${index})" class="btn btn-danger">X</button>
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+        <p class="mb-0">Price : ${el.price} $</p>
+        <button class="btn btn-success" onclick="addToCart(${el.id})">Add To Cart</button>
+        </div>
         </div>
     `;
   });
@@ -130,5 +133,12 @@ cart.splice(index,1)
 table.innerHTML=""
 showCart();
 }
+
+let deletephonelist=(index)=>{
+products.splice(index,1)
+productsDiv.innerHTML=""
+showProducts();
+}
+
 showProducts();
 showCart();
