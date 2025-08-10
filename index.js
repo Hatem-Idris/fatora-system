@@ -110,13 +110,19 @@ let closemodal=()=>{
 }
 
 let add=()=>{
+  if(phonename.value=="" || phoneprice.value==""){
+    alert(`You can't leave empty values`)
+  }else{
   let phonenamee = phonename.value
-  let phonepricee = phoneprice.value
+  let phonepricee = +phoneprice.value
   let finaladd = { name: phonenamee , price: phonepricee }
   products.push(finaladd)
+  phonename.value=""
+  phoneprice.value=""
   closemodal()
   productsDiv.innerHTML=""
 showProducts();
+}
 }
 
 let deletephone=(index)=>{
